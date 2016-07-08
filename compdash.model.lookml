@@ -17,10 +17,10 @@
     sql_on: ${sales_order_line_f.dw_product_key} = ${product_d.dw_product_key}
     relationship: many_to_one
     
-#  joins:
- # - join: region_d
-  #  sql_on: ${sales_order_line_f.dw_region_key} = ${region_d.dw_region_key}
-   # relationship: many_to_one
+  joins:
+  - join: region_d
+    sql_on: ${sales_order_line_f.dw_region_key} = ${region_d.dw_region_key}
+    relationship: many_to_one
     
 #  joins:
   #- join: sales_order_line_d
