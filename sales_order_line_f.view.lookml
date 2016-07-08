@@ -104,6 +104,7 @@
 
   - dimension: total_netsellprice_goal_ccy
     type: string
+    hidden: true
     sql: ${TABLE}.TOTAL_NETSELLPRICE_GOAL_CCY
 
   - dimension: usd_bdn_cost_budgeted_rate
@@ -121,4 +122,10 @@
   - measure: count
     type: count
     drill_fields: []
+    
+  - measure: total_netsellprice_goal
+    type: sum
+    sql: ${total_netsellprice_goal_ccy}
+  
+  
 
