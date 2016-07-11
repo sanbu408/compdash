@@ -126,6 +126,17 @@
   - measure: total_netsellprice_goal
     type: sum
     sql: ${total_netsellprice_goal_ccy}
-  
+    
+  - measure: Goal
+    type: sum
+    sql: ${total_netsellprice_goal_ccy}
+
+  - measure: Invoiced
+    type: sum
+    sql: ${Orderentry Netselling So ccy}
+ 
+  - measure: Attainment
+    type: sum
+    sql: ${total_netsellprice_goal_ccy} / sum(Goal)
   
 
