@@ -41,6 +41,10 @@
   - dimension: geo
     type: string
     sql: ${TABLE}.GEO
+    
+  - dimension: location
+    type: string
+    sql: ${TABLE}.GEO
 
   - dimension: geo_code
     type: string
