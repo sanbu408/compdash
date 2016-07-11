@@ -123,7 +123,7 @@
     type: count
     drill_fields: []
     
-  - measure: total_netsellprice_goal
+  - measure: Invoiced
     type: sum
     sql: ${total_netsellprice_goal_ccy}
     
@@ -131,7 +131,7 @@
     type: sum
     sql: ${total_netsellprice_goal_ccy}
 
-  - measure: Invoiced
+  - measure: Invoiced1
     type: sum
     sql: ${Orderentry Netselling So ccy}
  
