@@ -139,14 +139,6 @@
     type: sum
     sql: ${total_netsellprice_goal_ccy} / sum(Goal)
     
-  - measure: Onreserve
-    type: sum
-    sql: if (Transaction Type = 'CURRENT PERIOD ON RESERVE" THEN ${Order Entry List Price So ccy}
-    
-  - measure: Offreserve
-    type: sum
-    sql: if (Transaction Type = 'CURRENT PERIOD OFF RESERVE" THEN ${Order Entry List Price So ccy}
-    
     
     
   
