@@ -123,21 +123,22 @@
     type: count
     drill_fields: []
     
-  - measure: Invoiced
+  - measure: invoiced
     type: sum
     sql: ${total_netsellprice_goal_ccy}
     
-  - measure: Goal
+  - measure: goal
     type: sum
     sql: ${total_netsellprice_goal_ccy}
 
-  - measure: Invoiced1
+  - measure: invoiced1
     type: sum
     sql: ${Orderentry Netselling So ccy}
  
-  - measure: Attainment
-    type: sum
-    sql: ${total_netsellprice_goal_ccy} / sum(Goal)
+  - measure: attainment
+  # probabaly need to add a null_if function
+    type: number
+    sql: ${invoiced} / nullif(${goal},0)
     
   - measure: on_reserve
     type: sum
