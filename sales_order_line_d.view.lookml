@@ -1,5 +1,5 @@
 - view: sales_order_line_d
-  sql_table_name: CommDash.SALES_ORDER_LINE_D
+  sql_table_name: "CommDash.SALES_ORDER_LINE_D"
   fields:
 
   - dimension: aoo_classification
@@ -186,14 +186,6 @@
     type: string
     sql: ${TABLE}.TRANSACTION_TYPE
     
-  - measure: Onreserve
-    type: sum
-    sql: if (Transaction Type = 'CURRENT PERIOD ON RESERVE" THEN ${Order Entry List Price So ccy}
-    
-  - measure: Offreserve
-    type: sum
-    sql: if (Transaction Type = 'CURRENT PERIOD OFF RESERVE" THEN ${Order Entry List Price So ccy}
-
   - measure: count
     type: count
     drill_fields: detail*

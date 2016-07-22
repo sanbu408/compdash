@@ -1,5 +1,5 @@
 - view: sales_order_line_f
-  sql_table_name: CommDash.SALES_ORDER_LINE_F
+  sql_table_name: "CommDash.SALES_ORDER_LINE_F"
   fields:
 
   - dimension: budgeted_rate
@@ -139,6 +139,11 @@
     type: sum
     sql: ${total_netsellprice_goal_ccy} / sum(Goal)
     
+  - measure: on_reserve
+    type: sum
+    sql:  ${orderentry_list_price_so_ccy}
+    filters:
+      sales_order_line_d.transaction_type: "CURRENT PERIOD ONRESERVE"
     
     
   

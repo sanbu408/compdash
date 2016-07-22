@@ -13,6 +13,7 @@
     sql: ${TABLE}.DW_DELETE_IND
 
   - dimension: dw_sales_rep_key
+    primary_key: true
     type: string
     sql: ${TABLE}.DW_SALES_REP_KEY
 
