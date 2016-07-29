@@ -184,11 +184,21 @@
 
   - dimension: transaction_type
     type: string
-    sql: ${TABLE}.TRANSACTION_TYPE
-    
+    sql: |
+      CASE 
+        WHEN ${TABLE}.TRANSACTION_TYPE = 'CURRENT PERIOD OFF RESERVE' THEN 'Off Reserve'
+        WHEN ${TABLE}.TRANSACTION_TYPE = 'CURRENT PERIOD ON RESERVE' THEN 'On Reserve'
+        WHEN ${TABLE}.TRANSACTION_TYPE = 'CURRENT PERIOD INVOICED SALES ORDER' THEN 'Invoiced'
+        ELSE 'Bookings'
+      END
+        
   - measure: count
     type: count
     drill_fields: detail*
+    
+  - measure: count_customers
+    type: count_distinct
+    sql: ${bill_to_cust_name}
 
 
   # ----- Sets of fields for drilling ------

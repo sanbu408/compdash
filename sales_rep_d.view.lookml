@@ -2,6 +2,22 @@
   sql_table_name: CommDash.SALES_REP_D
   fields:
 
+  - filter: sales_rep_select 
+    suggest_dimension: sales_rep_d.rep_name
+    
+  - filter: rep_type_select
+    suggest_dimension: sales_rep_d.rep_type
+    
+  - dimension: rep_comparitor
+    sql: |
+      CASE 
+        WHEN {% condition sales_rep_select %} ${sales_rep_d.rep_name} {% endcondition %} 
+          THEN concat('1 - ' , ${sales_rep_d.rep_name}) 
+        WHEN {% condition rep_type_select %} sales_rep_d.rep_type {% endcondition %}
+          THEN concat('2 - Rest of ' , ${sales_rep_d.rep_type})
+        ELSE '3 - All Other Reps'
+      END
+  
   - dimension_group: dw_create
     type: time
     timeframes: [date, week, month]
@@ -34,6 +50,11 @@
   - dimension: rep_name
     type: string
     sql: ${TABLE}.REP_NAME
+    suggest_persist_for: 24 hours
+    links:
+    - label: Sales Rep Commission Dashboard
+      url: /dashboards/6?Sales%20Rep={{ value }}&Rep%20Type={{ rep_type._value }}
+      icon_url: http://looker.com/favicon.ico    
 
   - dimension: rep_type
     type: string
@@ -50,4 +71,3 @@
   - measure: count
     type: count
     drill_fields: [rep_name]
-

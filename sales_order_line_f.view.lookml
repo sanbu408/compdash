@@ -126,6 +126,7 @@
   - measure: invoiced
     type: sum
     sql: ${total_netsellprice_goal_ccy}
+    drill_fields: [dw_sales_order_line_key, sales_order_line_d.sold_to_cust_name, sales_order_line_d.bill_to_cust_name, invoiced]
     
   - measure: goal
     type: sum
@@ -139,6 +140,7 @@
   # probabaly need to add a null_if function
     type: number
     sql: ${invoiced} / nullif(${goal},0)
+    value_format_name: percent_0
     
   - measure: on_reserve
     type: sum

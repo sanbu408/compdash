@@ -3,15 +3,20 @@
 - include: "*.view.lookml"       # include all the views
 - include: "*.dashboard.lookml"  # include all the dashboards
 
-- explore: cal_date_d
-
-- explore: product_d
-
-- explore: region_d
-
-- explore: sales_order_line_d
+# - explore: cal_date_d
+# 
+# - explore: product_d
+# 
+# - explore: region_d
+# 
+# - explore: sales_order_line_d
 
 - explore: sales_rep_d
+  label: "Sales Reps"
+  joins:
+  - join: salesrep_facts  
+    sql_on: ${sales_rep_d.rep_name} = ${salesrep_facts.rep_name}
+    relationship: one_to_one
 
 - explore: sales_order_line_f
   label: "Sales Orders"
@@ -42,3 +47,7 @@
   - join: sales_rep_d
     sql_on: ${sales_order_line_f.dw_sales_rep_key} = ${sales_rep_d.dw_sales_rep_key} 
     relationship: many_to_one
+    
+  - join: salesrep_facts  
+    sql_on: ${sales_rep_d.rep_name} = ${salesrep_facts.rep_name}
+    relationship: one_to_one
